@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import BotList from '../components/BotList';
 import CreateBotForm from '../components/CreateBotForm';
+import { Robot } from 'lucide-react';
 
 const Index = () => {
   const [bots, setBots] = useState([]);
@@ -19,34 +20,33 @@ const Index = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6">Solana Wallet Tracker Bot</h1>
-      <Tabs defaultValue="create" className="w-full">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="create">Create Bot</TabsTrigger>
-          <TabsTrigger value="active">Active Bots</TabsTrigger>
-        </TabsList>
-        <TabsContent value="create">
-          <Card>
-            <CardHeader>
-              <CardTitle>Create New Bot</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CreateBotForm onAddBot={addBot} />
-            </CardContent>
-          </Card>
-        </TabsContent>
-        <TabsContent value="active">
-          <Card>
-            <CardHeader>
-              <CardTitle>Active Bots</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <BotList bots={bots} onUpdateBotStatus={updateBotStatus} />
-            </CardContent>
-          </Card>
-        </TabsContent>
-      </Tabs>
+    <div className="min-h-screen bg-gradient-to-br from-purple-100 to-indigo-200 p-8">
+      <div className="container mx-auto">
+        <div className="flex items-center justify-center mb-8">
+          <Robot className="w-12 h-12 text-indigo-600 mr-4" />
+          <h1 className="text-4xl font-bold text-indigo-800">Solana Wallet Tracker Bot</h1>
+        </div>
+        <Card className="w-full max-w-4xl mx-auto shadow-xl">
+          <CardContent className="p-0">
+            <Tabs defaultValue="create" className="w-full">
+              <TabsList className="grid w-full grid-cols-2 rounded-t-lg bg-indigo-100">
+                <TabsTrigger value="create" className="data-[state=active]:bg-white py-3">Create Bot</TabsTrigger>
+                <TabsTrigger value="active" className="data-[state=active]:bg-white py-3">Active Bots</TabsTrigger>
+              </TabsList>
+              <div className="p-6">
+                <TabsContent value="create">
+                  <CardTitle className="text-2xl font-semibold mb-4 text-indigo-800">Create New Bot</CardTitle>
+                  <CreateBotForm onAddBot={addBot} />
+                </TabsContent>
+                <TabsContent value="active">
+                  <CardTitle className="text-2xl font-semibold mb-4 text-indigo-800">Active Bots</CardTitle>
+                  <BotList bots={bots} onUpdateBotStatus={updateBotStatus} />
+                </TabsContent>
+              </div>
+            </Tabs>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 };
