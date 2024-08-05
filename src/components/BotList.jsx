@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import useBot from '../hooks/useBot';
+import { useBot } from '../hooks/useBot';
 
 const BotList = ({ bots }) => {
   return (

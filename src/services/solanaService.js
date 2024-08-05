@@ -2,7 +2,7 @@ import { Connection, PublicKey } from '@solana/web3.js';
 import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
 import Decimal from 'decimal.js';
 
-const connection = new Connection('https://api.mainnet-beta.solana.com');
+const connection = new Connection('https://api.devnet.solana.com');
 
 export const getWalletTokens = async (walletAddress) => {
   const pubKey = new PublicKey(walletAddress);
@@ -20,6 +20,6 @@ export const getWalletTokens = async (walletAddress) => {
 
 export const getTokenPrice = async (tokenMint) => {
   // This is a placeholder. In a real-world scenario, you'd need to integrate with a price feed service.
-  // For demonstration purposes, we're returning a random price.
-  return Math.random() * 100;
+  // For demonstration purposes, we're returning a random price between 0.01 and 10.
+  return (Math.random() * 9.99 + 0.01).toFixed(4);
 };

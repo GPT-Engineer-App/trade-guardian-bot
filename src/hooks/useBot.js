@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getWalletTokens, getTokenPrice } from '../services/solanaService';
 
-const useBot = (bot) => {
+export const useBot = (bot) => {
   const [tokens, setTokens] = useState([]);
   const [trackedToken, setTrackedToken] = useState(null);
 
