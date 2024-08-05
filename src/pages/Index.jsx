@@ -4,14 +4,17 @@ import { Card, CardContent } from "@/components/ui/card";
 import BotList from '../components/BotList';
 import CreateBotForm from '../components/CreateBotForm';
 import { Bot, Plus, Wallet } from 'lucide-react';
+import { useState } from 'react';
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 const Index = () => {
   const [bots, setBots] = useState([]);
   const [walletBalance, setWalletBalance] = useState(100); // Mock wallet balance
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const addBot = (bot) => {
     setBots([...bots, bot]);
+    setIsDialogOpen(false);
   };
 
   const updateBot = (updatedBot) => {
@@ -37,9 +40,9 @@ const Index = () => {
             <div className="mb-6">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-2xl font-semibold text-indigo-800">Your Bots</h2>
-                <Dialog>
+                <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                   <DialogTrigger asChild>
-                    <Button className="bg-indigo-600 hover:bg-indigo-700">
+                    <Button className="bg-indigo-600 hover:bg-indigo-700" onClick={() => setIsDialogOpen(true)}>
                       <Plus className="w-4 h-4 mr-2" /> New Bot
                     </Button>
                   </DialogTrigger>

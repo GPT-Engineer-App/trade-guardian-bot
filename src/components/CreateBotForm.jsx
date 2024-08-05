@@ -25,12 +25,6 @@ const CreateBotForm = ({ onAddBot }) => {
       status: isTestMode ? 'testing' : 'active',
     };
     onAddBot(newBot);
-    setBotName('');
-    setWalletAddress('');
-    setMinInvestment('');
-    setMaxInvestment('');
-    setExitPercentage('');
-    setIsTestMode(false);
   };
 
   return (
