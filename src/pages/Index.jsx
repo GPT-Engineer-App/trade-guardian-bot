@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import BotList from '../components/BotList';
 import CreateBotForm from '../components/CreateBotForm';
-import { Robot } from 'lucide-react';
+import { Bot } from 'lucide-react';
 
 const Index = () => {
   const [bots, setBots] = useState([]);
@@ -23,7 +23,7 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-br from-purple-100 to-indigo-200 p-8">
       <div className="container mx-auto">
         <div className="flex items-center justify-center mb-8">
-          <Robot className="w-12 h-12 text-indigo-600 mr-4" />
+          <Bot className="w-12 h-12 text-indigo-600 mr-4" />
           <h1 className="text-4xl font-bold text-indigo-800">Solana Wallet Tracker Bot</h1>
         </div>
         <Card className="w-full max-w-4xl mx-auto shadow-xl">
