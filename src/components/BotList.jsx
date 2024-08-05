@@ -46,7 +46,8 @@ const BotCard = ({ bot, onUpdateBotStatus }) => {
         <CardTitle className="flex justify-between items-center">
           <div className="flex items-center space-x-2">
             <span className="text-xl font-bold">{bot.name || `Bot ${bot.id}`}</span>
-            <span className="text-sm opacity-75">({bot.walletAddress.slice(0, 6)}...{bot.walletAddress.slice(-4)})</span>
+            <span className="text-sm opacity-75">•</span>
+            <span className="text-sm opacity-75">{bot.walletAddress.slice(0, 6)}...{bot.walletAddress.slice(-4)}</span>
           </div>
           <Badge className={`${getStatusColor(bot.status)} text-white`}>
             {bot.status.charAt(0).toUpperCase() + bot.status.slice(1)}
