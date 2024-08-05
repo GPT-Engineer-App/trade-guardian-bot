@@ -42,20 +42,19 @@ const BotCard = ({ bot, onUpdateBotStatus }) => {
 
   return (
     <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-      <CardHeader className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white">
+      <CardHeader className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white p-4">
         <CardTitle className="flex justify-between items-center">
-          <span className="text-xl font-bold">{bot.name || `Bot ${bot.id}`}</span>
+          <div className="flex items-center space-x-2">
+            <span className="text-xl font-bold">{bot.name || `Bot ${bot.id}`}</span>
+            <span className="text-sm opacity-75">({bot.walletAddress.slice(0, 6)}...{bot.walletAddress.slice(-4)})</span>
+          </div>
           <Badge className={`${getStatusColor(bot.status)} text-white`}>
             {bot.status.charAt(0).toUpperCase() + bot.status.slice(1)}
           </Badge>
         </CardTitle>
       </CardHeader>
       <CardContent className="p-6">
-        <div className="grid grid-cols-2 gap-4 mb-4">
-          <div className="flex items-center">
-            <Wallet className="w-5 h-5 mr-2 text-indigo-600" />
-            <span className="text-sm text-gray-600">Wallet: {bot.walletAddress.slice(0, 6)}...{bot.walletAddress.slice(-4)}</span>
-          </div>
+        <div className="grid grid-cols-3 gap-4 mb-4">
           <div className="flex items-center">
             <DollarSign className="w-5 h-5 mr-2 text-indigo-600" />
             <span className="text-sm text-gray-600">Investment: {bot.minInvestment} - {bot.maxInvestment} SOL</span>
