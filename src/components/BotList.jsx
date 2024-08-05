@@ -44,7 +44,7 @@ const BotCard = ({ bot, onUpdateBotStatus }) => {
     <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
       <CardHeader className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white">
         <CardTitle className="flex justify-between items-center">
-          <span className="text-xl font-bold">Bot {bot.id}</span>
+          <span className="text-xl font-bold">{bot.name || `Bot ${bot.id}`}</span>
           <Badge className={`${getStatusColor(bot.status)} text-white`}>
             {bot.status.charAt(0).toUpperCase() + bot.status.slice(1)}
           </Badge>
