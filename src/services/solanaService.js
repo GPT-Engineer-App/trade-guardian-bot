@@ -1,25 +1,18 @@
-import { Connection, PublicKey } from '@solana/web3.js';
-import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
-import Decimal from 'decimal.js';
-
-const connection = new Connection('https://api.devnet.solana.com');
+// Mock data for demonstration purposes
+const mockTokens = [
+  { mint: 'TokenA', amount: 100 },
+  { mint: 'TokenB', amount: 200 },
+  { mint: 'TokenC', amount: 300 },
+];
 
 export const getWalletTokens = async (walletAddress) => {
-  const pubKey = new PublicKey(walletAddress);
-  const tokens = await connection.getParsedTokenAccountsByOwner(pubKey, {
-    programId: TOKEN_PROGRAM_ID,
-  });
-
-  return tokens.value.map((accountInfo) => ({
-    mint: accountInfo.account.data.parsed.info.mint,
-    amount: new Decimal(accountInfo.account.data.parsed.info.tokenAmount.amount)
-      .div(Math.pow(10, accountInfo.account.data.parsed.info.tokenAmount.decimals))
-      .toNumber(),
-  }));
+  // In a real implementation, this would fetch data from a Solana API
+  console.log(`Fetching tokens for wallet: ${walletAddress}`);
+  return Promise.resolve(mockTokens);
 };
 
 export const getTokenPrice = async (tokenMint) => {
   // This is a placeholder. In a real-world scenario, you'd need to integrate with a price feed service.
-  // For demonstration purposes, we're returning a random price between 0.01 and 10.
-  return (Math.random() * 9.99 + 0.01).toFixed(4);
+  console.log(`Fetching price for token: ${tokenMint}`);
+  return Promise.resolve((Math.random() * 9.99 + 0.01).toFixed(4));
 };

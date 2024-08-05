@@ -23,9 +23,9 @@ export const useBot = (bot) => {
         const currentPrice = await getTokenPrice(trackedToken.mint);
         setTrackedToken(prevToken => ({
           ...prevToken,
-          currentPrice: currentPrice
+          currentPrice: parseFloat(currentPrice)
         }));
-        if (currentPrice >= trackedToken.entryPrice * (1 + bot.exitPercentage / 100)) {
+        if (parseFloat(currentPrice) >= trackedToken.entryPrice * (1 + bot.exitPercentage / 100)) {
           console.log(`Exit condition met for ${trackedToken.mint}. Current price: ${currentPrice}`);
           setTrackedToken(null);
         }
@@ -45,8 +45,8 @@ export const useBot = (bot) => {
         getTokenPrice(newToken.mint).then(price => {
           setTrackedToken({
             ...newToken,
-            entryPrice: price,
-            currentPrice: price,
+            entryPrice: parseFloat(price),
+            currentPrice: parseFloat(price),
           });
           console.log(`New token tracked: ${newToken.mint}. Entry price: ${price}`);
         });
