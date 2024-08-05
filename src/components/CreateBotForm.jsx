@@ -17,7 +17,7 @@ const CreateBotForm = ({ onAddBot }) => {
       minInvestment: parseFloat(minInvestment),
       maxInvestment: parseFloat(maxInvestment),
       exitPercentage: parseFloat(exitPercentage),
-      status: 'Active',
+      status: 'active',
     };
     onAddBot(newBot);
     setWalletAddress('');

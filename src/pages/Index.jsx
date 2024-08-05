@@ -12,6 +12,12 @@ const Index = () => {
     setBots([...bots, bot]);
   };
 
+  const updateBotStatus = (botId, newStatus) => {
+    setBots(bots.map(bot => 
+      bot.id === botId ? { ...bot, status: newStatus } : bot
+    ));
+  };
+
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-6">Solana Wallet Tracker Bot</h1>
@@ -36,7 +42,7 @@ const Index = () => {
               <CardTitle>Active Bots</CardTitle>
             </CardHeader>
             <CardContent>
-              <BotList bots={bots} />
+              <BotList bots={bots} onUpdateBotStatus={updateBotStatus} />
             </CardContent>
           </Card>
         </TabsContent>

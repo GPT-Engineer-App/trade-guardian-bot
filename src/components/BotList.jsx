@@ -1,9 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { Button } from "@/components/ui/button";
 import { useBot } from '../hooks/useBot';
 
-const BotList = ({ bots }) => {
+const BotList = ({ bots, onUpdateBotStatus }) => {
   return (
     <div className="space-y-4">
       {bots.map((bot) => (
@@ -13,15 +14,20 @@ const BotList = ({ bots }) => {
   );
 };
 
-const BotCard = ({ bot }) => {
+const BotCard = ({ bot, onUpdateBotStatus }) => {
   const { tokens, trackedToken } = useBot(bot);
 
-  const getStatusColor = (status) => {
+  const getStatusIndicator = (status) => {
     switch (status) {
-      case 'Tracking': return 'bg-green-500';
-      case 'Waiting': return 'bg-yellow-500';
-      default: return 'bg-gray-500';
+      case 'active': return '🟢';
+      case 'inactive': return '🔴';
+      case 'testing': return '🟡';
+      default: return '⚪';
     }
+  };
+
+  const handleStatusChange = (newStatus) => {
+    onUpdateBotStatus(bot.id, newStatus);
   };
 
   const calculateProgress = () => {
@@ -37,10 +43,24 @@ const BotCard = ({ bot }) => {
     <Card>
       <CardHeader>
         <CardTitle className="flex justify-between items-center">
-          Bot {bot.id}
-          <Badge className={getStatusColor(trackedToken ? 'Tracking' : 'Waiting')}>
-            {trackedToken ? 'Tracking' : 'Waiting'}
-          </Badge>
+          <span>Bot {bot.id} {getStatusIndicator(bot.status)}</span>
+          <div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handleStatusChange(bot.status === 'active' ? 'inactive' : 'active')}
+              className="mr-2"
+            >
+              {bot.status === 'active' ? 'Deactivate' : 'Activate'}
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handleStatusChange('testing')}
+            >
+              Test Run
+            </Button>
+          </div>
         </CardTitle>
       </CardHeader>
       <CardContent>
