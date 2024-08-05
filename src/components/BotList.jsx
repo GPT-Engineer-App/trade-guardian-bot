@@ -8,9 +8,13 @@ import { Activity, DollarSign, Percent, Wallet } from 'lucide-react';
 const BotList = ({ bots, onUpdateBotStatus }) => {
   return (
     <div className="space-y-6">
-      {bots.map((bot) => (
-        <BotCard key={bot.id} bot={bot} onUpdateBotStatus={onUpdateBotStatus} />
-      ))}
+      {bots.length === 0 ? (
+        <p className="text-center text-gray-500">No bots created yet. Create a new bot to get started!</p>
+      ) : (
+        bots.map((bot) => (
+          <BotCard key={bot.id} bot={bot} onUpdateBotStatus={onUpdateBotStatus} />
+        ))
+      )}
     </div>
   );
 };

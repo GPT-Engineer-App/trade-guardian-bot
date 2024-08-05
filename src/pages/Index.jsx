@@ -28,18 +28,18 @@ const Index = () => {
         </div>
         <Card className="w-full max-w-4xl mx-auto shadow-xl">
           <CardContent className="p-0">
-            <Tabs defaultValue="create" className="w-full">
+            <Tabs defaultValue="bots" className="w-full">
               <TabsList className="grid w-full grid-cols-2 rounded-t-lg bg-indigo-100">
                 <TabsTrigger value="create" className="data-[state=active]:bg-white py-3">Create Bot</TabsTrigger>
-                <TabsTrigger value="active" className="data-[state=active]:bg-white py-3">Active Bots</TabsTrigger>
+                <TabsTrigger value="bots" className="data-[state=active]:bg-white py-3">Bots</TabsTrigger>
               </TabsList>
               <div className="p-6">
                 <TabsContent value="create">
                   <CardTitle className="text-2xl font-semibold mb-4 text-indigo-800">Create New Bot</CardTitle>
                   <CreateBotForm onAddBot={addBot} />
                 </TabsContent>
-                <TabsContent value="active">
-                  <CardTitle className="text-2xl font-semibold mb-4 text-indigo-800">Active Bots</CardTitle>
+                <TabsContent value="bots">
+                  <CardTitle className="text-2xl font-semibold mb-4 text-indigo-800">All Bots</CardTitle>
                   <BotList bots={bots} onUpdateBotStatus={updateBotStatus} />
                 </TabsContent>
               </div>
