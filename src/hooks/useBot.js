@@ -21,6 +21,10 @@ const useBot = (bot) => {
     if (trackedToken) {
       const checkPrice = async () => {
         const currentPrice = await getTokenPrice(trackedToken.mint);
+        setTrackedToken(prevToken => ({
+          ...prevToken,
+          currentPrice: currentPrice
+        }));
         if (currentPrice >= trackedToken.entryPrice * (1 + bot.exitPercentage / 100)) {
           console.log(`Exit condition met for ${trackedToken.mint}. Current price: ${currentPrice}`);
           setTrackedToken(null);
@@ -42,6 +46,7 @@ const useBot = (bot) => {
           setTrackedToken({
             ...newToken,
             entryPrice: price,
+            currentPrice: price,
           });
           console.log(`New token tracked: ${newToken.mint}. Entry price: ${price}`);
         });
